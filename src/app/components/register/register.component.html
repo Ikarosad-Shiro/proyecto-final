@@ -1,0 +1,33 @@
+<mat-card class="register-card">
+    <mat-card-header>
+        <mat-card-title>Registro</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form class="register-form">
+            <mat-form-field appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input matInput type="text" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Correo Electrónico</mat-label>
+                <input matInput type="email" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Contraseña</mat-label>
+                <input matInput type="password" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Confirmar Contraseña</mat-label>
+                <input matInput type="password" required>
+            </mat-form-field>
+
+            <div class="register-actions">
+                <button mat-raised-button color="primary" type="submit" class="register-button">Registrarse</button>
+                <button mat-button color="accent" routerLink="/sesion">¿Ya tienes cuenta? Inicia sesión</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
