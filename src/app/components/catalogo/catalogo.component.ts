@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-catalogo',
@@ -6,26 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./catalogo.component.css']
 })
 export class CatalogoComponent implements OnInit {
-  games = [
-    {
-      title: 'Juego 1',
-      description: 'Descripción del Juego 1',
-      image: '../../../assets/J1.webp'
-    },
-    {
-      title: 'Juego 2',
-      description: 'Descripción del Juego 2',
-      image: 'assets/juego2.jpg'
-    },
-    {
-      title: 'Juego 3',
-      description: 'Descripción del Juego 3',
-      image: 'assets/juego3.jpg'
-    }
-  ];
+  isLoggedIn: boolean = false;
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
+    // Aquí podrías comprobar si el usuario está logueado, por ejemplo, verificando un token en localStorage
+  }
+
+  navigateToLogin(): void {
+    this.router.navigate(['/sesion']);
+  }
+
+  logout(): void {
+    // Aquí podrías eliminar el token de autenticación del localStorage
+    this.isLoggedIn = false;
+    this.router.navigate(['/']);
   }
 }
