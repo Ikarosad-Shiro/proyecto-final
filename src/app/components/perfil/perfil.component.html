@@ -3,7 +3,6 @@
       <mat-icon>arrow_back</mat-icon>
     </button>
     <span class="toolbar-title">Perfil del Usuario</span>
-    <img src="../../../assets/LogoSinFondo.png" alt="Logo" class="logo">
 </mat-toolbar>
 
 <div class="perfil-container">
@@ -15,34 +14,39 @@
         <mat-card-content>
             <div class="user-info">
                 <div class="info-item">
-                    <mat-icon class="info-icon">person</mat-icon>
+                    <mat-icon class="info-icon">account_circle</mat-icon>
                     <div class="info-text">
                         <h4>Nombre:</h4>
-                        <p>{{ userName }}</p>
+                        <p>{{ userData.name }}</p>
                     </div>
                 </div>
                 <div class="info-item">
                     <mat-icon class="info-icon">email</mat-icon>
                     <div class="info-text">
                         <h4>Email:</h4>
-                        <p>{{ userEmail }}</p>
+                        <p>{{ userData.email }}</p>
                     </div>
                 </div>
                 <div class="info-item">
                     <mat-icon class="info-icon">phone</mat-icon>
                     <div class="info-text">
                         <h4>Teléfono:</h4>
-                        <p>{{ phoneNumber || 'No disponible' }}</p>
+                        <p *ngIf="userData.phoneNumber; else noPhone"> {{ userData.phoneNumber }}</p>
+                        <ng-template #noPhone>No disponible</ng-template>
                     </div>
                 </div>
             </div>
-            <form (ngSubmit)="onSubmit()" class="phone-form">
-                <mat-form-field>
+            <form [formGroup]="phoneForm" (ngSubmit)="updatePhoneNumber()" class="phone-form">
+                <mat-form-field appearance="fill">
                     <mat-label>Teléfono</mat-label>
-                    <input matInput placeholder="Ingresa tu teléfono" [(ngModel)]="phoneNumber" name="phoneNumber" required>
+                    <input matInput formControlName="phoneNumber" placeholder="Número de teléfono">
                 </mat-form-field>
-                <button mat-raised-button color="primary" type="submit">Actualizar Teléfono</button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="phoneForm.invalid">Actualizar Teléfono</button>
             </form>
         </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="accent" (click)="navigateToActualizarPerfil()">Actualizar Datos</button>
+            <button mat-raised-button color="warn" (click)="deleteAccount()">Eliminar Cuenta</button>
+        </mat-card-actions>
     </mat-card>
 </div>

@@ -1,14 +1,12 @@
 :host {
     display: block;
-    min-height: 100vh;
-    /* Ajuste de la altura mínima para que cubra toda la página */
+    height: 100vh;
     position: relative;
     background-image: url('../../../assets/FondoPerfil.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    /* Hace que la imagen de fondo sea estática */
 }
 
 :host::before {
@@ -19,13 +17,11 @@
     right: 0;
     bottom: 0;
     background: rgba(27, 25, 25, 0.5);
-    /* Ajusta el valor de alpha para reducir el brillo */
     z-index: 1;
 }
 
 .toolbar {
     position: fixed;
-    /* Mantiene la barra de herramientas en la parte superior */
     width: 100%;
     top: 0;
     z-index: 3;
@@ -38,12 +34,7 @@
     font-size: 1.5em;
 }
 
-.logo {
-    height: 70px;
-    margin-right: 16px;
-}
-
-.perfil-container {
+.actualizarperfil-container {
     position: relative;
     z-index: 2;
     display: flex;
@@ -55,7 +46,6 @@
     color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     margin-top: 100px;
-    /* Espacio para la barra de herramientas fija */
 }
 
 mat-card {
@@ -75,40 +65,12 @@ mat-card-title {
     font-weight: bold;
 }
 
-.user-info {
+.profile-form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-}
-
-.info-item {
-    display: flex;
-    align-items: center;
-}
-
-.info-icon {
-    margin-right: 10px;
-    color: #ff4081;
-}
-
-.info-text h4,
-.info-text p {
-    margin: 0;
-}
-
-.phone-form {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    gap: 20px;
 }
 
 mat-form-field {
     width: 100%;
-}
-
-mat-card-actions {
-    display: flex;
-    justify-content: space-between;
-    padding: 16px;
 }

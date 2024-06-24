@@ -7,13 +7,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatListModule } from '@angular/material/list'; // Importar MatListModule
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,10 +24,11 @@ import { RegisterComponent } from './components/register/register.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { JuegosComponent } from './components/juegos/juegos.component';
 import { VerificationDialogComponent } from './components/verification-dialog/verification-dialog.component';
-import { PerfilComponent } from './components/perfil/perfil.component'; // Importar el componente Perfil
+import { PerfilComponent } from './components/perfil/perfil.component';
+import { ActualizarPerfilComponent } from './components/actualizarperfil/actualizarperfil.component';
 
 import { HttpClientProviderModule } from './http-client.provider.module';
-import { AuthService } from './services/auth.service'; // Importar el servicio de autenticación
+import { AuthService } from './services/auth.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -37,7 +37,8 @@ const routes: Routes = [
   { path: 'catalogo', component: CatalogoComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'juegos', component: JuegosComponent },
-  { path: 'perfil', component: PerfilComponent }, // Añadir la ruta para el componente Perfil
+  { path: 'perfil', component: PerfilComponent },
+  { path: 'actualizarperfil', component: ActualizarPerfilComponent },
   { path: '**', component: PagenotfoundComponent }
 ];
 
@@ -52,7 +53,8 @@ const routes: Routes = [
     PagenotfoundComponent,
     JuegosComponent,
     VerificationDialogComponent,
-    PerfilComponent // Declarar el componente Perfil
+    PerfilComponent,
+    ActualizarPerfilComponent
   ],
   imports: [
     BrowserModule,
@@ -65,15 +67,15 @@ const routes: Routes = [
     MatInputModule,
     MatDialogModule,
     FormsModule,
+    ReactiveFormsModule, // Asegúrate de importar ReactiveFormsModule
     HttpClientModule,
     HttpClientProviderModule,
-    RouterModule.forRoot(routes), // Importar RouterModule y definir las rutas
-    MatMenuModule, // Importar MatMenuModule
-    MatIconModule, // Importar MatIconModule
-    MatDividerModule, // Importar MatDividerModule
-    MatListModule // Importar MatListModule
+    RouterModule.forRoot(routes),
+    MatMenuModule,
+    MatIconModule,
+    MatDividerModule
   ],
-  providers: [AuthService], // Proveer el servicio de autenticación
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

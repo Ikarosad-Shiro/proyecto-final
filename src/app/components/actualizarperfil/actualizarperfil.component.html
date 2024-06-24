@@ -1,0 +1,32 @@
+<mat-toolbar color="primary" class="toolbar">
+    <button mat-icon-button (click)="navigateToPerfil()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <span class="toolbar-title">Actualizar Perfil</span>
+</mat-toolbar>
+
+<div class="actualizarperfil-container">
+    <h2>Actualizar Perfil</h2>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Información del Usuario</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="profileForm" (ngSubmit)="updateProfile()" class="profile-form">
+                <mat-form-field appearance="fill">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput formControlName="name" placeholder="Nombre">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" placeholder="Email" type="email">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Teléfono</mat-label>
+                    <input matInput formControlName="phoneNumber" placeholder="Número de teléfono">
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="submit" [disabled]="profileForm.invalid">Actualizar Perfil</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,22 +18,37 @@ export class AuthService {
 
   // Inicio de sesión usando el backend
   login(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/login`, { email, password }).pipe(
-      tap((response: any) => {
-        localStorage.setItem('userId', response.userId); // Almacenar el userId en localStorage
-        localStorage.setItem('token', response.token); // Si también tienes un token
-      })
-    );
+    return this.http.post(`${this.baseUrl}/login`, { email, password });
   }
 
   // Cierre de sesión
   logout(): Observable<void> {
     return new Observable<void>((observer) => {
       localStorage.removeItem('token'); // Eliminar token del almacenamiento local
-      localStorage.removeItem('userId'); // Eliminar userId del almacenamiento local
+      localStorage.removeItem('firebaseUid'); // Eliminar Firebase UID
       observer.next();
       observer.complete();
     });
+  }
+
+  // Obtener datos del usuario
+  getUserData(userId: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/users/${userId}`);
+  }
+
+  // Actualizar número de teléfono del usuario
+  updatePhoneNumber(userId: string, phoneNumber: string): Observable<any> {
+    return this.http.put(`${this.baseUrl}/users/${userId}/phone`, { phoneNumber });
+  }
+
+  // Actualizar perfil del usuario
+  updateUserProfile(userId: string, userData: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/users/${userId}`, userData);
+  }
+
+  // Eliminar cuenta de usuario
+  deleteUserAccount(userId: string): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/users/${userId}`);
   }
 
   // Verificar si el usuario está logueado
@@ -62,16 +76,5 @@ export class AuthService {
         observer.complete();
       }
     });
-  }
-
-  // Obtener datos del usuario
-  getUserData(userId: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/users/${userId}`);
-  }
-
-  // Método para actualizar el número de teléfono
-  updatePhoneNumber(phoneNumber: string): Observable<any> {
-    const userId = localStorage.getItem('userId'); // Asegúrate de tener el ID del usuario almacenado
-    return this.http.put(`${this.baseUrl}/users/${userId}/phone`, { phoneNumber });
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
@@ -8,22 +9,73 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
-  phoneNumber: string = '';
-  userName: string = '';
-  userEmail: string = '';
+  userData: any = {};
+  phoneForm: FormGroup;
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.phoneForm = this.fb.group({
+      phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]]
+    });
+  }
 
   ngOnInit(): void {
-    const userId = this.getUserIdFromLocalStorage();
-    if (userId) {
-      this.authService.getUserData(userId).subscribe(user => {
-        this.userName = user.name;
-        this.userEmail = user.email;
-        this.phoneNumber = user.phoneNumber || '';
-      }, error => {
-        console.error('Error al obtener los datos del usuario', error);
-      });
+    if (this.isBrowser()) {
+      const userId = localStorage.getItem('firebaseUid');
+      if (userId) {
+        this.authService.getUserData(userId).subscribe(
+          data => {
+            this.userData = data;
+            this.phoneForm.patchValue({ phoneNumber: data.phoneNumber });
+          },
+          error => {
+            console.error('Error al obtener los datos del usuario', error);
+          }
+        );
+      }
+    }
+  }
+
+  updatePhoneNumber(): void {
+    if (this.isBrowser()) {
+      const userId = localStorage.getItem('firebaseUid');
+      if (userId) {
+        const phoneNumber = this.phoneForm.get('phoneNumber')?.value;
+        this.authService.updatePhoneNumber(userId, phoneNumber).subscribe(
+          () => {
+            this.userData.phoneNumber = phoneNumber;
+            alert('Número de teléfono actualizado correctamente');
+          },
+          error => {
+            console.error('Error al actualizar el número de teléfono', error);
+          }
+        );
+      }
+    }
+  }
+
+  navigateToActualizarPerfil(): void {
+    this.router.navigate(['/actualizarperfil']);
+  }
+
+  deleteAccount(): void {
+    if (this.isBrowser()) {
+      const userId = localStorage.getItem('firebaseUid');
+      if (userId && confirm('¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.')) {
+        this.authService.deleteUserAccount(userId).subscribe(
+          () => {
+            alert('Cuenta eliminada correctamente');
+            this.authService.logout();
+            this.router.navigate(['/']);
+          },
+          error => {
+            console.error('Error al eliminar la cuenta', error);
+          }
+        );
+      }
     }
   }
 
@@ -31,18 +83,7 @@ export class PerfilComponent implements OnInit {
     this.router.navigate(['/catalogo']);
   }
 
-  onSubmit(): void {
-    this.authService.updatePhoneNumber(this.phoneNumber).subscribe(response => {
-      console.log('Teléfono actualizado', response);
-    }, error => {
-      console.error('Error al actualizar el teléfono', error);
-    });
-  }
-
-  private getUserIdFromLocalStorage(): string | null {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      return localStorage.getItem('userId');
-    }
-    return null;
+  private isBrowser(): boolean {
+    return typeof window !== 'undefined' && typeof window.localStorage !== 'undefined';
   }
 }
