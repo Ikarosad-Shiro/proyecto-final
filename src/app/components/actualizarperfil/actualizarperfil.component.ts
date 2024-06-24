@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -45,12 +45,16 @@ export class ActualizarPerfilComponent implements OnInit {
     }
   }
 
+  get emailControl(): FormControl {
+    return this.profileForm.get('email') as FormControl;
+  }
+
   updateProfile(): void {
     if (this.isBrowser()) {
       const userId = localStorage.getItem('firebaseUid');
       if (userId) {
-        const updatedData = this.profileForm.getRawValue(); // Use getRawValue() to get all values including disabled
-        this.authService.updateUserProfile(userId, updatedData).subscribe(
+        const { name, phoneNumber } = this.profileForm.value;
+        this.authService.updateUserProfile(userId, { name, phoneNumber }).subscribe(
           () => {
             alert('Perfil actualizado correctamente');
             this.router.navigate(['/perfil']);
@@ -63,7 +67,7 @@ export class ActualizarPerfilComponent implements OnInit {
     }
   }
 
-  navigateToPerfil(): void {
+  cancel(): void {
     this.router.navigate(['/perfil']);
   }
 

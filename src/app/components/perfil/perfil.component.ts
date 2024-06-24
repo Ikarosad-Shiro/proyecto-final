@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -10,26 +9,20 @@ import { Router } from '@angular/router';
 })
 export class PerfilComponent implements OnInit {
   userData: any = {};
-  phoneForm: FormGroup;
 
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router
-  ) {
-    this.phoneForm = this.fb.group({
-      phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]]
-    });
-  }
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
+    console.log('ngOnInit ejecutado');
     if (this.isBrowser()) {
       const userId = localStorage.getItem('firebaseUid');
+      console.log('Firebase UID:', userId);
       if (userId) {
+        console.log('Llamando a getUserData con userId:', userId);
         this.authService.getUserData(userId).subscribe(
           data => {
+            console.log('Datos del usuario recibidos:', data);
             this.userData = data;
-            this.phoneForm.patchValue({ phoneNumber: data.phoneNumber });
           },
           error => {
             console.error('Error al obtener los datos del usuario', error);
@@ -39,22 +32,8 @@ export class PerfilComponent implements OnInit {
     }
   }
 
-  updatePhoneNumber(): void {
-    if (this.isBrowser()) {
-      const userId = localStorage.getItem('firebaseUid');
-      if (userId) {
-        const phoneNumber = this.phoneForm.get('phoneNumber')?.value;
-        this.authService.updatePhoneNumber(userId, phoneNumber).subscribe(
-          () => {
-            this.userData.phoneNumber = phoneNumber;
-            alert('Número de teléfono actualizado correctamente');
-          },
-          error => {
-            console.error('Error al actualizar el número de teléfono', error);
-          }
-        );
-      }
-    }
+  navigateToCatalogo(): void {
+    this.router.navigate(['/catalogo']);
   }
 
   navigateToActualizarPerfil(): void {
@@ -77,10 +56,6 @@ export class PerfilComponent implements OnInit {
         );
       }
     }
-  }
-
-  navigateToCatalogo(): void {
-    this.router.navigate(['/catalogo']);
   }
 
   private isBrowser(): boolean {

@@ -31,6 +31,7 @@ export class SesionComponent {
           this.errorMessage = 'Parece que tu cuenta no está verificada. Revisa tu correo, te llegó un mensaje de verificación. Puede que esté en spam.';
         } else {
           localStorage.setItem('token', response.userId); // Guardar el token de sesión
+          localStorage.setItem('firebaseUid', response.userId); // Guardar UID de Firebase en localStorage
           this.router.navigate(['/catalogo']);
         }
       },

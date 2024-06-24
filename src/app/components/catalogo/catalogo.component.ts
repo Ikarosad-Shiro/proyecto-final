@@ -29,19 +29,18 @@ export class CatalogoComponent implements OnInit {
   navigateToSettings(): void {
     this.router.navigate(['/ajustes']); // Ajusta la ruta según tu aplicación
   }
-  
+
   navigateToJuego1(): void {
     this.router.navigate(['./juegos', 'the-house-of-the-dead']); //Navega al componente juegos
   }
 
   logout(): void {
-    this.authService.logout().subscribe(() => {
-      if (this.isBrowser()) {
-        localStorage.removeItem('token'); // Eliminar token del almacenamiento local
-      }
-      this.isLoggedIn = false;
-      this.router.navigate(['/']);
-    });
+    this.authService.logout();
+    if (this.isBrowser()) {
+      localStorage.removeItem('token'); // Eliminar token del almacenamiento local
+    }
+    this.isLoggedIn = false;
+    this.router.navigate(['/']);
   }
 
   private isBrowser(): boolean {

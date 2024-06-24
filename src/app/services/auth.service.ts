@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +14,20 @@ export class AuthService {
 
   // Registro de usuario usando el backend
   register(email: string, password: string, name: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/register`, { email, password, name });
+    return this.http.post(`${this.baseUrl}/register`, { email, password, name }).pipe(
+      tap((response: any) => {
+        localStorage.setItem('firebaseUid', response.userId); // Guardar UID de Firebase en localStorage
+      })
+    );
   }
 
   // Inicio de sesión usando el backend
   login(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/login`, { email, password });
+    return this.http.post(`${this.baseUrl}/login`, { email, password }).pipe(
+      tap((response: any) => {
+        localStorage.setItem('firebaseUid', response.userId); // Guardar UID de Firebase en localStorage
+      })
+    );
   }
 
   // Cierre de sesión
