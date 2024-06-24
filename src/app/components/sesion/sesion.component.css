@@ -40,3 +40,8 @@
     color: white;
     /* Cambia el color del texto a blanco */
 }
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}

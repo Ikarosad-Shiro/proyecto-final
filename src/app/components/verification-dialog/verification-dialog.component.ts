@@ -11,12 +11,12 @@ export class VerificationDialogComponent {
   constructor(
     private dialogRef: MatDialogRef<VerificationDialogComponent>,
     private router: Router,
-    @Inject(MAT_DIALOG_DATA) public data: { message: string }
+    @Inject(MAT_DIALOG_DATA) public data: { title: string, message: string }
   ) {}
 
   onClose(): void {
     this.dialogRef.close();
-    if (this.data.message.includes('correo para verificar su cuenta')) {
+    if (this.data.message.includes('cuenta no está verificada')) {
       this.router.navigate(['/sesion']);
     }
   }

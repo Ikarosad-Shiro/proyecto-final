@@ -13,7 +13,9 @@ export class CatalogoComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    // Aquí podrías comprobar si el usuario está logueado, por ejemplo, verificando un token en localStorage
+    if (this.isBrowser()) {
+      this.isLoggedIn = !!localStorage.getItem('token');
+    }
   }
 
   navigateToLogin(): void {
@@ -21,8 +23,16 @@ export class CatalogoComponent implements OnInit {
   }
 
   logout(): void {
-    // Aquí podrías eliminar el token de autenticación del localStorage
-    this.isLoggedIn = false;
-    this.router.navigate(['/']);
+    this.authService.logout().subscribe(() => {
+      if (this.isBrowser()) {
+        localStorage.removeItem('token'); // Eliminar token del almacenamiento local
+      }
+      this.isLoggedIn = false;
+      this.router.navigate(['/']);
+    });
+  }
+
+  private isBrowser(): boolean {
+    return typeof window !== 'undefined' && typeof window.localStorage !== 'undefined';
   }
 }

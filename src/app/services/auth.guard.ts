@@ -1,39 +1,33 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { map, take, tap, switchMap } from 'rxjs/operators';
+import { CanActivate, Router } from '@angular/router';
 import { AuthService } from './auth.service';
+import { Observable, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
+
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<boolean> {
-    return this.authService.isLoggedIn().pipe(
-      take(1),
-      map(isLoggedIn => !!isLoggedIn),
-      tap(loggedIn => {
-        if (!loggedIn) {
-          this.router.navigate(['/login']);
+  canActivate(): Observable<boolean> | boolean {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/sesion']);
+      return false;
+    }
+
+    return this.authService.isVerified().pipe(
+      map((verified: boolean) => {
+        if (!verified) {
+          this.router.navigate(['/sesion']);
+          return false;
         }
+        return true;
       }),
-      switchMap(isLoggedIn => {
-        if (isLoggedIn) {
-          return this.authService.isVerified().pipe(
-            tap(isVerified => {
-              if (!isVerified) {
-                this.router.navigate(['/verify-email']);
-              }
-            })
-          );
-        } else {
-          return of(false);
-        }
+      catchError(() => {
+        this.router.navigate(['/sesion']);
+        return of(false);  // Aquí devolvemos un observable que emite `false`
       })
     );
   }
