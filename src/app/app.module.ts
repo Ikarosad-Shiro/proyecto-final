@@ -10,8 +10,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list'; // Importar MatListModule
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,9 +25,10 @@ import { RegisterComponent } from './components/register/register.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { JuegosComponent } from './components/juegos/juegos.component';
 import { VerificationDialogComponent } from './components/verification-dialog/verification-dialog.component';
+import { PerfilComponent } from './components/perfil/perfil.component'; // Importar el componente Perfil
 
-import { HttpClientProviderModule } from './http-client.provider.module'; // Importar el módulo de proveedor de HTTP
-import { environment } from '../environments/environment'; // Importar el entorno de Firebase
+import { HttpClientProviderModule } from './http-client.provider.module';
+import { AuthService } from './services/auth.service'; // Importar el servicio de autenticación
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -34,6 +37,7 @@ const routes: Routes = [
   { path: 'catalogo', component: CatalogoComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'juegos', component: JuegosComponent },
+  { path: 'perfil', component: PerfilComponent }, // Añadir la ruta para el componente Perfil
   { path: '**', component: PagenotfoundComponent }
 ];
 
@@ -47,7 +51,8 @@ const routes: Routes = [
     RegisterComponent,
     PagenotfoundComponent,
     JuegosComponent,
-    VerificationDialogComponent
+    VerificationDialogComponent,
+    PerfilComponent // Declarar el componente Perfil
   ],
   imports: [
     BrowserModule,
@@ -62,11 +67,13 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule,
     HttpClientProviderModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig), // Inicializar Firebase
-    AngularFireAuthModule, // Importar módulo de autenticación
-    RouterModule.forRoot(routes) // Importar RouterModule y definir las rutas
+    RouterModule.forRoot(routes), // Importar RouterModule y definir las rutas
+    MatMenuModule, // Importar MatMenuModule
+    MatIconModule, // Importar MatIconModule
+    MatDividerModule, // Importar MatDividerModule
+    MatListModule // Importar MatListModule
   ],
-  providers: [],
+  providers: [AuthService], // Proveer el servicio de autenticación
   bootstrap: [AppComponent]
 })
 export class AppModule { }

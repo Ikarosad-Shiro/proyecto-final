@@ -1,0 +1,48 @@
+<mat-toolbar color="primary" class="toolbar">
+    <button mat-icon-button (click)="navigateToCatalogo()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <span class="toolbar-title">Perfil del Usuario</span>
+    <img src="../../../assets/LogoSinFondo.png" alt="Logo" class="logo">
+</mat-toolbar>
+
+<div class="perfil-container">
+    <h2>Perfil del Usuario</h2>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Información del Usuario</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="user-info">
+                <div class="info-item">
+                    <mat-icon class="info-icon">person</mat-icon>
+                    <div class="info-text">
+                        <h4>Nombre:</h4>
+                        <p>{{ userName }}</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <mat-icon class="info-icon">email</mat-icon>
+                    <div class="info-text">
+                        <h4>Email:</h4>
+                        <p>{{ userEmail }}</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <mat-icon class="info-icon">phone</mat-icon>
+                    <div class="info-text">
+                        <h4>Teléfono:</h4>
+                        <p>{{ phoneNumber || 'No disponible' }}</p>
+                    </div>
+                </div>
+            </div>
+            <form (ngSubmit)="onSubmit()" class="phone-form">
+                <mat-form-field>
+                    <mat-label>Teléfono</mat-label>
+                    <input matInput placeholder="Ingresa tu teléfono" [(ngModel)]="phoneNumber" name="phoneNumber" required>
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="submit">Actualizar Teléfono</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -22,6 +22,14 @@ export class CatalogoComponent implements OnInit {
     this.router.navigate(['/sesion']);
   }
 
+  navigateToProfile(): void {
+    this.router.navigate(['/perfil']); // Navega al componente Perfil
+  }
+
+  navigateToSettings(): void {
+    this.router.navigate(['/ajustes']); // Ajusta la ruta según tu aplicación
+  }
+
   logout(): void {
     this.authService.logout().subscribe(() => {
       if (this.isBrowser()) {

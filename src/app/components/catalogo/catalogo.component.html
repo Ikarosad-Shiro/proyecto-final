@@ -1,9 +1,17 @@
 <mat-toolbar color="primary" class="toolbar">
+    <img src="../../../assets/LogoSinFondo.png" alt="Logo" class="logo">
     <button mat-button color="accent" *ngIf="!isLoggedIn" (click)="navigateToLogin()">Iniciar sesión</button>
-    <button mat-button color="accent" *ngIf="isLoggedIn" (click)="logout()">Cerrar sesión</button>
     <span class="spacer"></span>
-    <button mat-button color="accent" class="ai-button" routerLink="/consumoapi">Prueba la inteligencia artificial</button>
+    <button mat-button color="accent" class="ai-button" routerLink="/consumoapi" *ngIf="isLoggedIn">Prueba la inteligencia artificial</button>
     <span class="spacer"></span>
+    <button mat-icon-button [matMenuTriggerFor]="profileMenu" *ngIf="isLoggedIn" class="profile-button">
+      <img src="../../../assets/Usuario.png" alt="Profile Picture" class="profile-picture">
+    </button>
+    <mat-menu #profileMenu="matMenu">
+        <button mat-menu-item (click)="navigateToProfile()">Perfil</button>
+        <button mat-menu-item (click)="navigateToSettings()">Ajustes</button>
+        <button mat-menu-item (click)="logout()">Cerrar sesión</button>
+    </mat-menu>
 </mat-toolbar>
 
 <mat-card class="catalogo-card">
@@ -26,6 +34,7 @@
                     <button mat-button>Acción 2</button>
                 </mat-card-actions>
             </mat-card>
+            <!-- Puedes agregar más tarjetas aquí -->
         </div>
     </mat-card-content>
 </mat-card>
