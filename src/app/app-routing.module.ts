@@ -17,9 +17,10 @@ const routes: Routes = [
   { path: 'catalogo', component: CatalogoComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'juegos', component: JuegosComponent },
+  { path: 'juegos/the-house-of-the-dead', component: JuegosComponent }, //el agregado
   { path: 'perfil', component: PerfilComponent },
   { path: 'actualizarperfil', component: ActualizarPerfilComponent },
-  { path: '**', component: PagenotfoundComponent }
+  { path: '**', component: PagenotfoundComponent },
 ];
 
 @NgModule({

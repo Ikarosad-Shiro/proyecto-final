@@ -21,20 +21,293 @@
     <mat-card-content>
         <div class="card-container">
             <!-- Tarjeta 1 -->
-            <mat-card class="game-tile">
+            <mat-card class="game-tile" (click)="navigateToJuego1()">
+                <!--agregado-->
                 <mat-card-header>
-                    <mat-card-title>Juego 1</mat-card-title>
+                    <mat-card-title>The House Of The Dead</mat-card-title>
                 </mat-card-header>
                 <img mat-card-image src="assets/J1.webp" alt="Juego 1" class="card-image">
                 <mat-card-content>
-                    <p>Descripción del Juego 1</p>
+                    <p></p>
                 </mat-card-content>
-                <mat-card-actions>
-                    <button mat-button>Acción 1</button>
-                    <button mat-button>Acción 2</button>
-                </mat-card-actions>
             </mat-card>
-            <!-- Puedes agregar más tarjetas aquí -->
+
+            <!-- Tarjeta 2 -->
+            <mat-card class="game-tile">
+                <mat-card-header>
+                    <mat-card-title>Call of Duty</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="assets/Call_of_Duty.jpg" alt="Juego 2" class="card-image">
+                <mat-card-content>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Tarjeta 3 -->
+            <mat-card class="game-tile">
+                <mat-card-header>
+                    <mat-card-title>Call of Duty Black Ops III</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="assets/Call_of_Duty_BO_III.png" alt="Juego 3" class="card-image">
+                <mat-card-content>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Tarjeta 4 -->
+            <mat-card class="game-tile">
+                <mat-card-header>
+                    <mat-card-title>Crash Bandicoot 2</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="assets/Crash_Bandicoot_2.jpg" alt="Juego 4" class="card-image">
+                <mat-card-content>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Tarjeta 5 -->
+            <mat-card class="game-tile">
+                <mat-card-header>
+                    <mat-card-title>Crash Bandicoot N Sane Trilogy</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="assets/Crash_Bandicoot_N_Sane_Trilogy.webp" alt="Juego 5" class="card-image">
+                <mat-card-content>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Tarjeta 6 -->
+            <mat-card class="game-tile">
+                <mat-card-header>
+                    <mat-card-title>DOOM</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="assets/DOOM.jpg" alt="Juego 6" class="card-image">
+                <mat-card-content>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Tarjeta 7 -->
+            <mat-card class="game-tile">
+                <mat-card-header>
+                    <mat-card-title>Dragon Ball Budokai Tenkaichi</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="assets/Dragon_Ball_Budokai.webp" alt="Juego 7" class="card-image">
+                <mat-card-content>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Tarjeta 8 -->
+            <mat-card class="game-tile">
+                <mat-card-header>
+                    <mat-card-title>FC 24</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="assets/FC_24.webp" alt="Juego 8" class="card-image">
+                <mat-card-content>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Tarjeta 9 -->
+            <mat-card class="game-tile">
+                <mat-card-header>
+                    <mat-card-title>Final Fantasy VII</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="assets/Final_Fantasy_VII.webp" alt="Juego 9" class="card-image">
+                <mat-card-content>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Tarjeta 10 -->
+            <mat-card class="game-tile">
+                <mat-card-header>
+                    <mat-card-title>God of War</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="assets/God_of_War_4.webp" alt="Juego 10" class="card-image">
+                <mat-card-content>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Tarjeta 11 -->
+            <mat-card class="game-tile">
+                <mat-card-header>
+                    <mat-card-title>God of War Ragnarok</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="assets/God_of_War_ragnarok.webp" alt="Juego 11" class="card-image">
+                <mat-card-content>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Tarjeta 12 -->
+            <mat-card class="game-tile">
+                <mat-card-header>
+                    <mat-card-title>God of War</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="assets/God_of_War.webp" alt="Juego 12" class="card-image">
+                <mat-card-content>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Tarjeta 13 -->
+            <mat-card class="game-tile">
+                <mat-card-header>
+                    <mat-card-title>Grand Theft Auto V</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="assets/GTA_V.jpg" alt="Juego 13" class="card-image">
+                <mat-card-content>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Tarjeta 14 -->
+            <mat-card class="game-tile">
+                <mat-card-header>
+                    <mat-card-title>Grand Theft Auto Vice City</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="assets/GTA_VC.jpg" alt="Juego 14" class="card-image">
+                <mat-card-content>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Tarjeta 15 -->
+            <mat-card class="game-tile">
+                <mat-card-header>
+                    <mat-card-title>HALO 4</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="assets/HALO_4.webp" alt="Juego 15" class="card-image">
+                <mat-card-content>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Tarjeta 16 -->
+            <mat-card class="game-tile">
+                <mat-card-header>
+                    <mat-card-title>Honor of Kings</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="assets/HOK.jpg" alt="Juego 16" class="card-image">
+                <mat-card-content>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Tarjeta 17 -->
+            <mat-card class="game-tile">
+                <mat-card-header>
+                    <mat-card-title>Mobile Lengens Bang Bang</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="assets/MLBB.jpg" alt="Juego 17" class="card-image">
+                <mat-card-content>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Tarjeta 18 -->
+            <mat-card class="game-tile">
+                <mat-card-header>
+                    <mat-card-title>Principe de Persia <br>The Two Thrones</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="assets/Principe_de_Persia_2.jpg" alt="Juego 18" class="card-image">
+                <mat-card-content>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Tarjeta 19 -->
+            <mat-card class="game-tile">
+                <mat-card-header>
+                    <mat-card-title>Plantas vs Zombies</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="assets/PVSZ.jpg" alt="Juego 19" class="card-image">
+                <mat-card-content>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Tarjeta 20 -->
+            <mat-card class="game-tile">
+                <mat-card-header>
+                    <mat-card-title>The Last Of Us Parte II</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="assets/The_last_of_us_II.jpg" alt="Juego 20" class="card-image">
+                <mat-card-content>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Tarjeta 21 -->
+            <mat-card class="game-tile">
+                <mat-card-header>
+                    <mat-card-title>The Last Of Us</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="assets/the_last_of_us.jpg" alt="Juego 21" class="card-image">
+                <mat-card-content>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Tarjeta 22 -->
+            <mat-card class="game-tile">
+                <mat-card-header>
+                    <mat-card-title>Uncharted 1 Drake´s Fortune</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="assets/Uncharted_1.webp" alt="Juego 22" class="card-image">
+                <mat-card-content>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Tarjeta 23 -->
+            <mat-card class="game-tile">
+                <mat-card-header>
+                    <mat-card-title>Uncharted 2 Among Thieves</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="assets/Uncharted_2.webp" alt="Juego 23" class="card-image">
+                <mat-card-content>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Tarjeta 24 -->
+            <mat-card class="game-tile">
+                <mat-card-header>
+                    <mat-card-title>Uncharted 3 Drake's Deception</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="assets/Uncharted_3.webp" alt="Juego 24" class="card-image">
+                <mat-card-content>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Tarjeta 25 -->
+            <mat-card class="game-tile">
+                <mat-card-header>
+                    <mat-card-title>Uncharted 4 A Thief's End</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="assets/Uncharted_4.jpg" alt="Juego 25" class="card-image">
+                <mat-card-content>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Tarjeta 26 -->
+            <mat-card class="game-tile">
+                <mat-card-header>
+                    <mat-card-title>Uncharted The Lost Legacy</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="assets/Uncharted_Lost.webp" alt="Juego 26" class="card-image">
+                <mat-card-content>
+                    <p></p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Agrega más tarjetas según sea necesario -->
         </div>
     </mat-card-content>
 </mat-card>

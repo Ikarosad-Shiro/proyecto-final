@@ -54,7 +54,7 @@
 }
 
 .game-tile {
-    width: 300px;
+    width: 250px;
     /* Aumenta el tamaño del card */
     margin: 10px;
     border: 1px solid #ccc;
@@ -63,7 +63,7 @@
     overflow: hidden;
     background: rgba(77, 4, 83, 0.623);
     /* Fondo semitransparente */
-    height: 450px;
+    height: 400px;
     /* Aumenta la altura del card */
     display: flex;
     flex-direction: column;
@@ -84,10 +84,24 @@
     /* Asegura que la imagen tome todo el ancho del contenedor */
 }
 
+mat-cart-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 mat-card-title {
     font-size: 1.5em;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    color: white;
+    width: 100%;
+    /* Asegura que el título tome todo el ancho del contenedor */
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-style: italic;
 }
 
 mat-card-content p {
