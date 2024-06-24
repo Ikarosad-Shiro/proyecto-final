@@ -12,23 +12,20 @@ export class RegisterComponent {
   confirmPassword: string = '';
   name: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
-  register(): void {
+  register() {
     if (this.password !== this.confirmPassword) {
       console.error('Passwords do not match');
       return;
     }
-
-    this.authService.register(this.email, this.password, this.name).subscribe({
-      next: (res) => {
-        console.log('Registration successful:', res);
-        // Aquí puedes mostrar un mensaje de éxito o redirigir al usuario
+    this.authService.register(this.email, this.password, this.name).subscribe(
+      (response: any) => {
+        console.log('Registration successful:', response);
       },
-      error: (err) => {
-        console.error('Registration error:', err);
-        // Aquí puedes mostrar un mensaje de error
+      (error: any) => {
+        console.error('Registration error:', error);
       }
-    });
+    );
   }
 }

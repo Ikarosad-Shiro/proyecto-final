@@ -10,16 +10,16 @@ export class SesionComponent {
   email: string = '';
   password: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
-  login(): void {
-    this.authService.login(this.email, this.password).subscribe({
-      next: (res) => {
-        console.log('Login successful:', res);
+  login() {
+    this.authService.login(this.email, this.password).subscribe(
+      (response: any) => {
+        console.log('Login successful:', response);
       },
-      error: (err) => {
-        console.error('Login error:', err);
+      (error: any) => {
+        console.error('Login error:', error);
       }
-    });
+    );
   }
 }
